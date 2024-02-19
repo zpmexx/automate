@@ -1,0 +1,17 @@
+<!doctype html>
+{% include 'navbar.html' %}
+{% load static %}
+<!------ Include the above in your HEAD tag ---------->
+
+<html>
+<body>
+    <!-- Tabs Titles -->
+    <form method="POST">
+    {% csrf_token %}
+      <input type="text" id="login" class="input" name="username" placeholder="nazwa użytkownika">
+      <input type="password" id="password" class="input" name="password" placeholder="hasło">
+      <br></br>
+      <input type="submit" class="submit" value="Zaloguj">
+    </form>
+</body>
+</html>

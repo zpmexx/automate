@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %} 
+{% include 'navbar.html' %}
+{% load static %}
+<!doctype html>
+
+<form method = "POST" >
+{% csrf_token %}
+    <div class="container">
+      {% for message in messages  %}
+        {% if 'add_item' in message.tags %}
+            <p style ="color: red">{{message}}</p>
+        {% endif %}
+      {% endfor %}
+      {{form|crispy}}
+      <input type="submit" value="Dodaj">
+    </div>
+</form>

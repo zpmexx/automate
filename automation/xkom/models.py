@@ -4,12 +4,18 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
 
+status = [
+    (0, ("Aktywne")),
+    (1, ("Nieaktywne")),
+]
+
 class ItemModel(models.Model):
     name = models.CharField(verbose_name="Nazwa", blank=False, null=False, default = "nolink", max_length=200)
     link = models.CharField(verbose_name="Link", blank=False, null=False, default = "nolink", max_length=200)
     target_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena docelowa")
     current_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena obecna")
     img = models.ImageField(upload_to='images/', default='images/default.jpg', verbose_name="Zdjęcie")
+    status =  models.IntegerField(choices=status, default=0, verbose_name='Status')
     
     def __str__(self):
         return str(f'{self.name}')

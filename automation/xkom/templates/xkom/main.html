@@ -1,1 +1,38 @@
-siema
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Items Table</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Img</th>
+                <th>Nazwa</th>
+                <th>Cena docelowa</th>
+                <th>Cena startowa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td><a href ="{{item.link}}" target="_blank"><img src ="{{item.img.url}}" style="width: 150px; height: 150px;"></a></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.target_price }}</td>
+                <td>{{ item.current_price }}</td>
+                <td><form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                    <button type="submit">Dezaktywuj</button>
+                </form>
+            </td>
+    
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

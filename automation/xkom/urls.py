@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.main, name="main"),
+    path('dodaj/', views.addItem, name="additem"),
 
 ]
 
