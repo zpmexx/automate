@@ -10,8 +10,8 @@ status = [
 ]
 
 class ItemModel(models.Model):
-    name = models.CharField(verbose_name="Nazwa", blank=False, null=False, default = "nolink", max_length=200)
-    link = models.CharField(verbose_name="Link", blank=False, null=False, default = "nolink", max_length=200)
+    name = models.CharField(verbose_name="Nazwa", max_length=200, blank = True)
+    link = models.CharField(verbose_name="Link", max_length=200, unique = True)
     target_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena docelowa")
     current_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena obecna")
     img = models.ImageField(upload_to='images/', default='images/default.jpg', verbose_name="Zdjęcie")

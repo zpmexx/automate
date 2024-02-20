@@ -13,18 +13,23 @@
                 <th>Nazwa</th>
                 <th>Cena docelowa</th>
                 <th>Cena startowa</th>
-            </tr>
+            </tr>item.target_price
         </thead>
         <tbody>
             {% for item in items %}
             <tr>
                 <td><a href ="{{item.link}}" target="_blank"><img src ="{{item.img.url}}" style="width: 150px; height: 150px;"></a></td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.target_price }}</td>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                <td><p><input type="text" name="price_{{ item.id }}" value="{{ item.target_price }}"></p>
+                <p> <button type="submit"  value="{{ item.id }}">Aktualizuj</button></p>
+                </td>
+            </form>
                 <td>{{ item.current_price }}</td>
                 <td><form action="" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                    <input type="hidden" name="deactivate_{{ item.id }}" value="{{ item.id }}">
                     <button type="submit">Dezaktywuj</button>
                 </form>
             </td>
