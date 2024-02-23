@@ -4,8 +4,14 @@
 <html>
 <head>
     <title>Items Table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
 <body>
+    <form method="get" action="">
+        <input type="text" name="search_query" placeholder="Szukaj przedmiotów po nazwie.." style = "width: 250px">
+        <button type="submit">Szukaj</button>
+    </form>
+
     <table border="1">
         <thead>
             <tr>
@@ -13,7 +19,7 @@
                 <th>Nazwa</th>
                 <th>Cena docelowa</th>
                 <th>Cena startowa</th>
-            </tr>item.target_price
+            </tr>
         </thead>
         <tbody>
             {% for item in items %}

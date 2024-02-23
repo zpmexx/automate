@@ -3,7 +3,7 @@
 {% load static %}
 <!doctype html>
 
-<form method = "POST" >
+<form method = "POST" enctype='multipart/form-data'> 
 {% csrf_token %}
     <div class="container">
       {% for message in messages  %}
