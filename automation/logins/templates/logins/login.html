@@ -1,17 +1,36 @@
 <!doctype html>
-{% include 'navbar.html' %}
 {% load static %}
+{% include 'navbar.html' %}
+
+<link rel ="stylesheet" href ="{% static 'logins/login.css' %}">
 <!------ Include the above in your HEAD tag ---------->
 
 <html>
 <body>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
     <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+    <img src="{% static 'logins/logo.jpg' %}" id= "icon" alt="CDRL ICON" width="90%" height="100%"></img>
+    </div>
+    <br></br>
+    <!-- Login Form -->
     <form method="POST">
     {% csrf_token %}
       <input type="text" id="login" class="input" name="username" placeholder="nazwa użytkownika">
       <input type="password" id="password" class="input" name="password" placeholder="hasło">
+      {% for message in messages %}
+      {% if 'bad_credentials' in message.tags %}
+    <div class="login-box-message">{{message}} {% comment %} wiadomosc nieudanej próbie zalogowania {% endcomment %}</div>
+      {% endif %}
+    {% endfor %}
       <br></br>
       <input type="submit" class="submit" value="Zaloguj">
     </form>
+
+  </div>
+</div>
 </body>
 </html>
