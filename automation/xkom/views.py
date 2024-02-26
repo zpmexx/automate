@@ -3,8 +3,9 @@ from .models import ItemModel
 from django.contrib import messages
 from .forms import AddItemForm
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def main(request):
     if request.method == 'POST':
             print("post z main")
@@ -48,7 +49,7 @@ def main(request):
     context = {'items' : items}
     return render(request, 'xkom/main.html', context)
 
-
+@login_required
 def addItem(request):
     form = AddItemForm()
     if request.method == 'POST':
@@ -62,7 +63,7 @@ def addItem(request):
     context = {'form':form}
     return render (request, 'xkom/addItem.html',context)
 
-
+@login_required
 def test(request):
     search_query = request.GET.get('search_query', '')
     if search_query:
