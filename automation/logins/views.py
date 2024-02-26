@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
 def loginView(request):
     if request.user.is_authenticated:
         return redirect('main')
@@ -20,7 +21,7 @@ def loginView(request):
     context = {}
     return render (request, 'logins/login.html',context)
 
-@login_required
+@login_required()
 def logoutView(request):
     logout(request)
     return redirect('login')
