@@ -11,8 +11,8 @@ class ItemModelAdmin(admin.ModelAdmin):
     def html_link(self, obj):
         return format_html(f'<a href="{obj.link}" target=”_blank” >{obj.link}</a>')
     
-    list_display = ['image_tag','name','html_link','target_price','current_price','status']
-    search_fields = ['name']
+    list_display = ['image_tag','name','html_link','target_price','current_price','status','category']
+    search_fields = ['name','category']
     ordering = ['name']
     list_filter = ['status']
 

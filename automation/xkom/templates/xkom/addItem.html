@@ -9,6 +9,8 @@
       {% for message in messages  %}
         {% if 'add_item' in message.tags %}
             <p style ="color: red">{{message}}</p>
+        {% elif 'add_fail' in message.tags %}
+        <p style ="color: red">Przedmiot o tym adresie już istnieje.</p>
         {% endif %}
       {% endfor %}
       {{form|crispy}}

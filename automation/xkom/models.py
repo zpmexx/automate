@@ -14,6 +14,7 @@ class ItemModel(models.Model):
     link = models.CharField(verbose_name="Link", max_length=200, unique = True)
     target_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena docelowa")
     current_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena obecna")
+    category = models.CharField(verbose_name="Kategoria", max_length=200, blank = True)
     img = models.ImageField(upload_to='images/', default='images/default.jpg', verbose_name="Zdjęcie")
     status =  models.IntegerField(choices=status, default=0, verbose_name='Status')
     
