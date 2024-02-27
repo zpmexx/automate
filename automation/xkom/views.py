@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import ItemModel
+from .models import ItemModel, ReportElement
 from django.contrib import messages
 from .forms import AddItemForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.db.models import Max
 
 @login_required()
 def main(request):
@@ -95,3 +96,11 @@ def test(request):
         items = ItemModel.objects.filter(status = 0)
         context = {'items' : items}
         return render(request, 'xkom/test.html', context)
+    
+    
+@login_required()
+def reportView(request):
+    latest_date = ReportElement.objects.aggregate(latest_date=Max('creation_date'))['latest_date']
+    items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
+    context = {'items' : items}
+    return render (request, 'xkom/report.html',context)

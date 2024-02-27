@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %} 
+{% include 'navbar.html' %}
+{% load static %}
+<!doctype html>
+    <body>
+        {% if items %}
+            {% for item in items %}
+                <h1 style="color:red">Przedmiot: {{ item.item_name}}</h1>
+                <h2>Link: <a href="{{ item.link }}" target="_blank">{{ item.link }}</a></h2>
+                <h3>Cena za która chcieliśmy kupić: {{ item.target_price}} zł</h3>
+                <h3>Cena przedmiotu obecnie: {{ item.current_price}} zł</h3>
+                <h2>Różnica: {{ item.difference}} zł.</h2>
+            {% endfor %}
+        {% else %}
+            <h1 style="color: red; text-align: center;">BRAK RAPORTU!</h1>
+
+        {% endif %}
+    </body>
+</html>
