@@ -100,7 +100,14 @@ def test(request):
     
 @login_required()
 def reportView(request):
+    date = time = ''
     latest_date = ReportElement.objects.aggregate(latest_date=Max('creation_date'))['latest_date']
+    print(latest_date)
+    if latest_date:
+        date, time = str(latest_date).split(" ")
+        time, _ = time.split('+')
     items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
-    context = {'items' : items}
+    context = {'items' : items,
+               'date': date,
+               'time': time}
     return render (request, 'xkom/report.html',context)

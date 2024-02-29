@@ -4,6 +4,7 @@
 <!doctype html>
     <body>
         {% if items %}
+        <h1 style="color: red; text-align: center;">Raport z dnia {{date}} {{time}}</h1>
             {% for item in items %}
                 <h1 style="color:red">Przedmiot: {{ item.item_name}}</h1>
                 <h2>Link: <a href="{{ item.link }}" target="_blank">{{ item.link }}</a></h2>
