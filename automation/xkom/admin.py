@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import ItemModel
+from .models import ItemModel, ReportElement
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Count
 
@@ -41,3 +41,5 @@ class ItemModelAdmin(admin.ModelAdmin):
     list_filter = ['status',CategoryCountFilter]
 
 admin.site.register(ItemModel, ItemModelAdmin)
+
+admin.site.register(ReportElement)
