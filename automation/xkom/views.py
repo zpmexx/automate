@@ -5,8 +5,6 @@ from .forms import AddItemForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max
-from django.utils import timezone
-from django.db.models import OuterRef, Subquery, DateTimeField, F
 
 @login_required()
 def main(request):
@@ -102,16 +100,7 @@ def test(request):
     
 @login_required()
 def reportView(request):
-    today = timezone.now().date()
-    latest_entry_per_link = ReportElement.objects.filter(
-    link=OuterRef('link'),
-    date__date=today
-    ).order_by('-creation_date')
-
-# Now, annotate and filter your queryset to get the latest entry per link
-    items = ReportElement.objects.annotate(
-        latest_date=Subquery(latest_entry_per_link.values('creation_date')[:1], output_field=DateTimeField())
-    ).filter(creation_date=today, date=F('latest_date'))
-
+    latest_date = ReportElement.objects.aggregate(latest_date=Max('creation_date'))['latest_date']
+    items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
     context = {'items' : items}
-    return render (request, 'xkom/report.html',context) 
+    return render (request, 'xkom/report.html',context)
