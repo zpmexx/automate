@@ -42,4 +42,16 @@ class ItemModelAdmin(admin.ModelAdmin):
 
 admin.site.register(ItemModel, ItemModelAdmin)
 
-admin.site.register(ReportElement)
+class ReportElementAdmin(admin.ModelAdmin):
+    
+    def image_tag(self, obj):
+        return format_html(f'<img src="{obj.img.url}" style="max-width:100px; max-height:100px"/>')
+    
+    def html_link(self, obj):
+        return format_html(f'<a href="{obj.link}" target=”_blank” >{obj.link}</a>')
+    
+    list_display = ['image_tag','item_name','html_link','target_price','current_price','difference','creation_date']
+    search_fields = ['item_name']
+    ordering = ['creation_date','item_name']
+
+admin.site.register(ReportElement, ReportElementAdmin)

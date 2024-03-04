@@ -33,6 +33,15 @@
             .difference-negative {
                 color: #dc3545;
             }
+            .img-fluid {
+                max-width: 100%;
+                height: auto;
+            }
+            .img-center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
         </style>
         <title>Raport</title>
     </head>
@@ -48,9 +57,11 @@
                             <div class="card report-card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><a href="{{ item.link }}" target="_blank">{{ item.item_name }}</a></h5>
-                                    <p class="card-text">Cena za która chcieliśmy kupić: <strong>{{ item.target_price }} zł</strong></p>
-                                    <p class="card-text">Cena przedmiotu obecnie: <strong>{{ item.current_price }} zł</strong></p>
-                                    <p class="card-text">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.difference }} zł</strong></p>
+                                    <!-- Image centered below the item name -->
+                                    <img src="{{ item.img.url }}" class="img-fluid img-center" alt="{{ item.item_name }}">
+                                    <p class="card-text text-center">Cena za która chcieliśmy kupić: <strong>{{ item.target_price }} zł</strong></p>
+                                    <p class="card-text text-center">Cena przedmiotu obecnie: <strong>{{ item.current_price }} zł</strong></p>
+                                    <p class="card-text text-center">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.difference }} zł</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -63,5 +74,4 @@
             {% endif %}
         </div>
     </body>
-    </html>
-    
+</html>
