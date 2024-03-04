@@ -2,19 +2,66 @@
 {% include 'navbar.html' %}
 {% load static %}
 <!doctype html>
+<html>
+    <head>
+        <title>Items Table</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f5f5f5;
+                color: #333;
+            }
+            .report-header {
+                background-color: #989e9a;
+                color: #fff;
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+            .report-card {
+                box-shadow: 0 2px 4px rgba(0,0,0,.1);
+                transition: all .3s ease;
+            }
+            .report-card:hover {
+                box-shadow: 0 5px 15px rgba(0,0,0,.3);
+            }
+            .card-title a {
+                color: #007bff;
+            }
+            .difference-positive {
+                color: #28a745;
+            }
+            .difference-negative {
+                color: #dc3545;
+            }
+        </style>
+        <title>Raport</title>
+    </head>
     <body>
-        {% if items %}
-        <h1 style="color: red; text-align: center;">Raport z dnia {{date}} {{time}}</h1>
-            {% for item in items %}
-                <h1 style="color:red">Przedmiot: {{ item.item_name}}</h1>
-                <h2>Link: <a href="{{ item.link }}" target="_blank">{{ item.link }}</a></h2>
-                <h3>Cena za która chcieliśmy kupić: {{ item.target_price}} zł</h3>
-                <h3>Cena przedmiotu obecnie: {{ item.current_price}} zł</h3>
-                <h2>Różnica: {{ item.difference}} zł.</h2>
-            {% endfor %}
-        {% else %}
-            <h1 style="color: red; text-align: center;">BRAK RAPORTU!</h1>
-
-        {% endif %}
+        <div class="container">
+            {% if items %}
+                <div class="report-header text-center">
+                    <h1>Raport z dnia {{date}} {{time}}</h1>
+                </div>
+                <div class="row">
+                    {% for item in items %}
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card report-card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><a href="{{ item.link }}" target="_blank">{{ item.item_name }}</a></h5>
+                                    <p class="card-text">Cena za która chcieliśmy kupić: <strong>{{ item.target_price }} zł</strong></p>
+                                    <p class="card-text">Cena przedmiotu obecnie: <strong>{{ item.current_price }} zł</strong></p>
+                                    <p class="card-text">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.difference }} zł</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center mt-5">
+                    <h1 class="text-secondary">Brak Raportu!</h1>
+                </div>
+            {% endif %}
+        </div>
     </body>
-</html>
+    </html>
+    

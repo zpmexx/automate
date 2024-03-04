@@ -105,8 +105,16 @@ def reportView(request):
     print(latest_date)
     if latest_date:
         date, time = str(latest_date).split(" ")
-        time, _ = time.split('+')
-    items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
+        try:
+            time, _ = time.split('+')
+        except:
+            pass
+        try:
+            time, _ = time.split('.')
+        except:
+            pass
+    #items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
+    items = ReportElement.objects.all()
     context = {'items' : items,
                'date': date,
                'time': time}
