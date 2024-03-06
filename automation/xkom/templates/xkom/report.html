@@ -58,7 +58,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><a href="{{ item.link }}" target="_blank">{{ item.item_name }}</a></h5>
                                     <!-- Image centered below the item name -->
+                                    {% if item.img %}
                                     <img src="{{ item.img.url }}" class="img-fluid img-center" alt="{{ item.item_name }}">
+                                    {% endif %}
                                     <p class="card-text text-center">Cena za która chcieliśmy kupić: <strong>{{ item.target_price }} zł</strong></p>
                                     <p class="card-text text-center">Cena przedmiotu obecnie: <strong>{{ item.current_price }} zł</strong></p>
                                     <p class="card-text text-center">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.difference }} zł</strong></p>

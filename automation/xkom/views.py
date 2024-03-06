@@ -115,6 +115,9 @@ def reportView(request):
             pass
     #items = ReportElement.objects.filter(creation_date = latest_date).order_by('-difference')
     items = ReportElement.objects.all()
+    for item in items:
+        if not item.img:
+            item.save() # overwriten in model so its enough
     context = {'items' : items,
                'date': date,
                'time': time}

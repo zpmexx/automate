@@ -43,13 +43,13 @@ class ReportElement(models.Model):
     current_price = models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Cena obecna")
     difference =  models.FloatField(null = False, blank = False, default = 0.0, verbose_name="Różnica")
     creation_date =  models.DateTimeField(verbose_name='Data utworzenia', auto_now_add=True)
-    img = models.ImageField(upload_to='images/', default='images/default.jpg', verbose_name="Zdjęcie")
+    img = models.ImageField(upload_to='images/', default='images/default.jpg', verbose_name="Zdjęcie", blank=True, null=True)
     
     def save(self, *args, **kwargs):
         try:
             item = ItemModel.objects.get(link=self.link)
             self.img = item.img  
         except ItemModel.DoesNotExist:
-            pass
+            self.img = 'images/default.jpg'
         
         super(ReportElement, self).save(*args, **kwargs)
