@@ -118,6 +118,8 @@ def reportView(request):
     for item in items:
         if not item.img:
             item.save() # overwriten in model so its enough
+        if item.starting_price == 0.0:
+            item.save()
     context = {'items' : items,
                'date': date,
                'time': time}

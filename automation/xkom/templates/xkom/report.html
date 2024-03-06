@@ -78,9 +78,10 @@
                                     {% if item.img %}
                                     <img src="{{ item.img.url }}" class="img-fluid img-center" alt="{{ item.item_name }}">
                                     {% endif %}
+                                    <p class="card-text text-center">Cena wyjściowa: <strong>{{ item.starting_price }} zł</strong></p>
                                     <p class="card-text text-center">Cena za która chcieliśmy kupić: <strong>{{ item.target_price }} zł</strong></p>
                                     <p class="card-text text-center">Cena przedmiotu obecnie: <strong>{{ item.current_price }} zł</strong></p>
-                                    <p class="card-text text-center">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.difference }} zł</strong></p>
+                                    <p class="card-text text-center">Różnica: <strong class="{{ item.difference|floatformat:2|cut:'-' }}">{{ item.full_difference }} zł / {{item.difference}} zł</strong></p>
                                 </div>
                             </div>
                         </div>
