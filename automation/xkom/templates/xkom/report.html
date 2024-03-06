@@ -42,6 +42,22 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+            .stretched-link {
+                display: block;
+                position: relative;
+            }
+            
+            .stretched-link::after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                pointer-events: auto;
+                content: "";
+                background-color: rgba(0,0,0,0);
+            }
         </style>
         <title>Raport</title>
     </head>
@@ -53,10 +69,11 @@
                 </div>
                 <div class="row">
                     {% for item in items %}
+                    <a href="{{ item.link }}" target="_blank" class="stretched-link">
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card report-card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center"><a href="{{ item.link }}" target="_blank">{{ item.item_name }}</a></h5>
+                                    <h5 class="card-title text-center">{{ item.item_name }}</h5>
                                     <!-- Image centered below the item name -->
                                     {% if item.img %}
                                     <img src="{{ item.img.url }}" class="img-fluid img-center" alt="{{ item.item_name }}">
@@ -67,6 +84,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     {% endfor %}
                 </div>
             {% else %}
