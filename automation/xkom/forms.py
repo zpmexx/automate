@@ -6,8 +6,8 @@ class AddItemForm(ModelForm):
 
     class Meta:
         model = ItemModel
-        fields = ['name','link','target_price','current_price','img']
+        fields = ['link','target_price','current_price','img']
         
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['name'].required = False
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['name'].required = False
