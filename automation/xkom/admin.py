@@ -52,6 +52,6 @@ class ReportElementAdmin(admin.ModelAdmin):
     
     list_display = ['image_tag','item_name','html_link','target_price','current_price','difference','creation_date']
     search_fields = ['item_name']
-    ordering = ['creation_date','item_name']
+    ordering = ['-creation_date','item_name']
 
 admin.site.register(ReportElement, ReportElementAdmin)

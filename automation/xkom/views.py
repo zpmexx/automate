@@ -98,7 +98,7 @@ def test(request):
         return render(request, 'xkom/test.html', context)
     
     
-@login_required()
+#@login_required()
 def reportView(request):
     date = time = ''
     latest_date = ReportElement.objects.aggregate(latest_date=Max('creation_date'))['latest_date']
